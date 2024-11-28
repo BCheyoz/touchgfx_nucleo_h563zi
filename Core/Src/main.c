@@ -25,7 +25,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "BaseDeTemps.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -94,7 +94,7 @@ int main(void)
   MX_OCTOSPI1_Init();
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
-
+  InitBaseDeTemps();
   /* USER CODE END 2 */
 
   /* Initialize leds */
@@ -116,7 +116,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-
+	  GestionBaseDeTemps();
     /* -- Sample board code for User push-button in interrupt mode ---- */
     if (BspButtonState == BUTTON_PRESSED)
     {
