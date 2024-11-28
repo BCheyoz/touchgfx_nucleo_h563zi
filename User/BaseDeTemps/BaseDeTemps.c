@@ -15,21 +15,7 @@
 #include "BaseDeTemps.h"		// Pour accès à nos propres déclarations publiques
 
 /* USER CODE BEGIN Includes */
-
-#include "VersionInfos.h"		// Pour gestion TimeOut Jump & Reset
-#include "GestionLedAlive.h"	// Pour gestion de la Led de Vie
-#include "AnalogInputsCore.h"
-#include "FanPwmIcCore.h"
-#include "DigitalInputsUser.h"
-#include "mainRegulation.h"
-#include "MSM_mainStateMachine.h"
-#include "DateTime32.h" 		// Pour accès à la Gestion de la DateTime
-#include "ERR_ErrorManager.h"
-#include "iBusCore.h"			// Pour accès à la Gestion des Sabliers Internes iBus
-#include "INF_productInfo.h"
-#include "MemHistoCore.h"
-#include "UpgradeFirmware.h"	// Pour gestion TimeOut des Commandes Upgrade Firmware
-
+#include "GestionLedAlive.h"
 /* USER CODE END Includes */
 
 /******************************************************************************/
@@ -103,16 +89,13 @@ inline __attribute__((always_inline)) void GestionBaseDeTemps(void)
 
 	/* USER CODE BEGIN RT_10ms */
 
-		Handle_AnalogInputs_RT_10ms();
-		Handle_FanPwmIC_RT_10ms();
-		Handle_DigitalInputs_RT_10ms();
 
 // Ajout_Jp for MultiExecution and Capture I2c avec PulseView @ 500K :
 #ifdef RV3028_RTC_ENABLE_MANUAL_RW // from "I2cDevRtc_RV3028.h"
 	#ifdef I2CCM_ENABLE_DEBUG_MULTI_EXECUTION // from "I2cComMasterConf.h"
 		if( (0 == nb100msRT) ) // Permet d'exécuter chaque 10ms, pendant 100ms, 1 fois par seconde
 		{
-			I2cSystem_HandleRtcManualMultiExecute_10ms();
+			//I2cSystem_HandleRtcManualMultiExecute_10ms();
 		}
 	#endif // I2C_ENABLE_DEBUG_MULTI_EXECUTION
 #endif // RV3028_RTC_ENABLE_MANUAL_RW
@@ -135,13 +118,7 @@ inline __attribute__((always_inline)) void GestionBaseDeTemps(void)
 			AliveRunTime100ms++;
 #endif // BDT_SUPPORT_ALIVE_RT
 
-			Handle_Infos_RT_100ms();
 			Handle_GestionLed_RT_100ms();
-			Handle_DigitalInputs_RT_100ms();
-			handleMainStateMachineRT_100ms();
-			handleErrorManager_100ms();
-			iBusCoreHandleRunTime100ms();
-			Handle_UpgradeFirmware_RT_100ms();
 
 		//	UserFn_RT_100ms();	// Exemple de fonction à exécuter au RunTime dans le Programme Principal @ 100ms
 
@@ -162,10 +139,6 @@ inline __attribute__((always_inline)) void GestionBaseDeTemps(void)
 
 			/* USER CODE BEGIN RT_1s */
 
-				Handle_DateTime32_RT_1s();
-				handleMainRegulationRT_1s();
-				HandleWorkingTimeRT_1s();
-				GestionMemHisto_RT_1s();
 
 			//	UserFn_RT_1s();	// Exemple de fonction à exécuter au RunTime dans le Programme Principal @ 1s
 

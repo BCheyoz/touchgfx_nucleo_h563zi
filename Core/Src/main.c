@@ -26,6 +26,7 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "BaseDeTemps.h"
+#include "GestionLedAlive.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,6 +96,7 @@ int main(void)
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
   InitBaseDeTemps();
+  InitGestionLed();
   /* USER CODE END 2 */
 
   /* Initialize leds */
@@ -106,10 +108,9 @@ int main(void)
   BSP_PB_Init(BUTTON_USER, BUTTON_MODE_EXTI);
 
   /* USER CODE BEGIN BSP */
-  /* -- Sample board code to switch on leds ---- */
-  BSP_LED_On(LED_GREEN);
-  BSP_LED_On(LED_YELLOW);
+  /* -- Sample board code to switch on leds ---- */;
   BSP_LED_On(LED_RED);
+  SetBlinkMode(E_LED_CLIGN_RAPIDE_2);
   /* USER CODE END BSP */
 
   /* Infinite loop */
@@ -123,9 +124,7 @@ int main(void)
       /* Update button state */
       BspButtonState = BUTTON_RELEASED;
       /* -- Sample board code to toggle leds ---- */
-      BSP_LED_Toggle(LED_GREEN);
       BSP_LED_Toggle(LED_YELLOW);
-      BSP_LED_Toggle(LED_RED);
       /* ..... Perform your action ..... */
     }
     /* USER CODE END WHILE */
