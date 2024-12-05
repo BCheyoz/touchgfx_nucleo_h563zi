@@ -18,7 +18,6 @@
 /* USER CODE END Header */
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
-#include "crc.h"
 #include "memorymap.h"
 #include "octospi.h"
 #include "gpio.h"
@@ -26,7 +25,9 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "BaseDeTemps.h"
-#include "GestionLedAlive.h"
+#include "crc.h"
+
+#include <LedBlinker.hpp>
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -96,7 +97,6 @@ int main(void)
   MX_CRC_Init();
   /* USER CODE BEGIN 2 */
   InitBaseDeTemps();
-  InitGestionLed();
   /* USER CODE END 2 */
 
   /* Initialize leds */
@@ -110,7 +110,6 @@ int main(void)
   /* USER CODE BEGIN BSP */
   /* -- Sample board code to switch on leds ---- */;
   BSP_LED_On(LED_RED);
-  SetBlinkMode(E_LED_CLIGN_RAPIDE_2);
   /* USER CODE END BSP */
 
   /* Infinite loop */

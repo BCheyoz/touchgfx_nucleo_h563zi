@@ -12,10 +12,10 @@
  *
  */
 
+#include <LedBlinker.hpp>
 #include "BaseDeTemps.h"		// Pour accès à nos propres déclarations publiques
 
 /* USER CODE BEGIN Includes */
-#include "GestionLedAlive.h"
 /* USER CODE END Includes */
 
 /******************************************************************************/

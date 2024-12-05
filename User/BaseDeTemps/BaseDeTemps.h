@@ -18,6 +18,11 @@
 #ifndef BASEDETEMPS_BASEDETEMPS_H_
 #define BASEDETEMPS_BASEDETEMPS_H_
 
+
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include <stdint.h>			// Pour les types "int*_t" & "uint*_t"
 
 /********************************************************************************************
@@ -92,5 +97,9 @@ void HandleBaseDeTemps_IT_1ms(void);	// A appeler dans une Interruption @ 1ms (p
 
 uint32_t getAliveRunTime100ms(void);
 uint32_t getAliveRunTime1s(void);		// Pour récupérer le temps de RunTime x1s
+
+#ifdef __cplusplus
+}
+#endif
 
 #endif /* BASEDETEMPS_BASEDETEMPS_H_ */
